@@ -11,6 +11,11 @@ Lombok Plugin is used to generate getters and setters in the POJO
 
 Jacoco is used for thr reports of the code coverage by the JUnits
 
+http://openweathermap.org/help/city_list.txt
+
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
 
 
 

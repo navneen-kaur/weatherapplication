@@ -2,11 +2,9 @@ package com.group.weather.org.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.group.weather.org.domain.CurrentWeatherResponse;
-
-import com.group.weather.org.domain.CurrentWeatherResponseUi;
-import com.group.weather.org.Util.Conversions;
-import com.group.weather.org.domain.Sun;
+import com.group.weather.org.Util.DateConversions;
+import com.group.weather.org.domain.*;
+import com.group.weather.org.transformation.MessagetTransformation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -26,7 +24,7 @@ public class WeatherAppServiceImpl implements WeatherAppService {
 
     public static final String URL_OPEN_WEATHER_ORG = "http://api.openweathermap.org/data/2.5/weather?q=";
 
-    public CurrentWeatherResponseUi getCurrentWeather(@NotNull @Valid String city) throws Exception {
+    public CurrentWeatherResponseUi getCurrentWeather(@NotNull @Valid String city ,@NotNull @Valid String unit) throws Exception {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(new MediaType[]{MediaType.APPLICATION_JSON_UTF8}));
@@ -37,8 +35,14 @@ public class WeatherAppServiceImpl implements WeatherAppService {
         ResponseEntity<CurrentWeatherResponse> response = restTemplate.exchange(URL_OPEN_WEATHER_ORG + city + "&APPID=" + apiKey, HttpMethod.GET, entity, CurrentWeatherResponse.class);
         CurrentWeatherResponse updatedResponse = response.getBody();
         CurrentWeatherResponseUi finalResponse = new CurrentWeatherResponseUi();
-        Conversions conversions = new Conversions();
-        return conversions.getConvertedResponse(updatedResponse,finalResponse);
+        MessagetTransformation CurrentWeather = new MessagetTransformation();
+        if (unit.equalsIgnoreCase("Celsius")) {
+            return CurrentWeather.responseUiCelsius(updatedResponse, finalResponse);
+        }
+        else if (unit.equalsIgnoreCase("Fahrenheit")){
+            return CurrentWeather.responseUiFahrenheit(updatedResponse, finalResponse);
 
+    }
+       return new CurrentWeatherResponseUi();
     }
 }

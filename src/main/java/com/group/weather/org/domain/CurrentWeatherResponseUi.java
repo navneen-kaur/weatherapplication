@@ -15,7 +15,6 @@ public class CurrentWeatherResponseUi {
 
     private Temperature temperaturedetails;
 
-
     private Sun sun;
 
     private int id;

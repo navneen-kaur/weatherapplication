@@ -34,8 +34,8 @@ public class WeatherApplicationControllerTest {
     }
     @Test
      public void testServiceResponseNotNull() throws Exception{
-        Mockito.when(this.weatherAppService.getCurrentWeather("London")).thenReturn(getStubWeatherResponse());
-        CurrentWeatherResponseUi response = weatherApplicationController.getCurrentWeather("London");
+        Mockito.when(this.weatherAppService.getCurrentWeather("London", "Celsius")).thenReturn(getStubWeatherResponse());
+        CurrentWeatherResponseUi response = weatherApplicationController.getCurrentWeather("London", "Celsius");
         Assert.assertNotNull(response);
     }
 

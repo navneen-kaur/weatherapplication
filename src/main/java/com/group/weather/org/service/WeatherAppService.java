@@ -9,5 +9,5 @@ import javax.validation.constraints.NotNull;
 
 public interface WeatherAppService {
 
-    CurrentWeatherResponseUi getCurrentWeather(@NotNull @Valid String city) throws Exception;
+    CurrentWeatherResponseUi getCurrentWeather(@NotNull @Valid String city,@NotNull @Valid String unit) throws Exception;
 }

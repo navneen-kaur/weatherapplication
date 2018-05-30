@@ -21,10 +21,12 @@ public class WeatherApplicationController {
         this.weatherAppService = weatherAppService;
     }
 
-    @GetMapping(value="/weather/{city}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value="/weather/{city}/{unit}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public CurrentWeatherResponseUi getCurrentWeather(@PathVariable(value="city")String city) throws Exception {
-        return weatherAppService.getCurrentWeather(city);
+    public CurrentWeatherResponseUi getCurrentWeather(@PathVariable(value="city")String city,@PathVariable(value="unit")String unit) throws Exception {
+        return weatherAppService.getCurrentWeather(city, unit);
     }
+
+
 
 }
