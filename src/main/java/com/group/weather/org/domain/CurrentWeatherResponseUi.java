@@ -13,7 +13,7 @@ public class CurrentWeatherResponseUi {
 
     private ArrayList<Weather> weather;
 
-    private Main main;
+    private Temperature temperaturedetails;
 
 
     private Sun sun;
@@ -24,6 +24,6 @@ public class CurrentWeatherResponseUi {
 
     private int cod;
 
-    private Date date;
+    private Date latestUpdate;
 
 }
