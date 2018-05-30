@@ -42,7 +42,10 @@ mvn spring-boot:svc
 ## Running the api
 
 API Endpoint: /weather/{city}/{unit}
+
 API Response: Json/UI
+
+Sample request: http://localhost:8080/weather/London/Celsius
 
 ## Authors
 
