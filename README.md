@@ -1,15 +1,3 @@
-# weatherapplication
-
-This application has the API to show the current Weather report for the city selected
-
-API Method name : getCurrentWeather(city)
-Request Parameter : /weather/{city}
-Response : display all the information retrieved from API call of openweathermap.org
-
-Lombok Plugin is used to generate getters and setters in the POJO
-
-http://openweathermap.org/help/city_list.txt
-
 # The Weather App
 
 This Weather application is a spring boot based rest api which enables user to fetch Weather report for the city selected.
@@ -23,7 +11,7 @@ Alternatively the archieve/jar could be downloaded to run on your machine.
 
 - [x] Maven 3.3.9 or above
 - [x] java 1.8
-- [x] Any tool which could make a restfull api calls , may Postman rest service runner tool?
+- [x] Any tool which could make a restfull api calls , maybe Postman rest service runner tool?
 
 ### Installing above softwares
 
@@ -38,59 +26,27 @@ They gel together quite well :)
 
 Follow the steps below to generate reports for this application
 
--Run the command: mvn clean install
--Generated reports location : target/site/jacoco/index.html
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+*Run the command: mvn clean install
+*Generated reports location : target/site/jacoco/index.html
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Navigate to the home directory of the downloaded project and run the command below.
+
+mvn spring-boot:svc
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-## Contributing
+## Running the api
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+API Endpoint: /weather/{city}/{unit}
+API Response: Json/UI
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+* **Navneen Kaur**
 
 
 
