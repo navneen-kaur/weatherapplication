@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<title>First Web Application</title>
+</head>
+
+<body>
+	<script>
+		function myFunction(){
+
+		    var sel = document.getElementById("myList");
+		    var url = "http://localhost:8080/weather/"+sel.value;
+		    fetch (url).then(function(data){
+                document.getElementById("myText").innerHTML = data.toString();
+            })
+
+
+		}
+	</script>
+<h1>Current Weather App</h1>
+<p>
+	<label>Select city from the list</label>
+	<select id = "myList">
+		<option value = "London">London</option>
+		<option value = "HongKong">HongKong</option>
+		<option value = "Chennai">Chennai</option>
+
+	</select>
+</p>
+
+<button type="submit" onclick="myFunction()">submit</button>
+<div id ="myText"></div>
+</body>
+
+</html>
