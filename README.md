@@ -47,6 +47,41 @@ API Response: Json/UI
 
 Sample request: http://localhost:8080/weather/London/Celsius
 
+Sample response : 
+
+{
+    "weather": [
+        {
+            "id": 721,
+            "main": "Haze",
+            "description": "haze",
+            "icon": "50d"
+        }
+    ],
+    "temperaturedetails": {
+        "temp": 18.25,
+        "pressure": {
+            "value": 1013,
+            "unit": "hpa"
+        },
+        "humidity": {
+            "value": 77,
+            "unit": "%"
+        },
+        "temp_min": 15.989999999999952,
+        "temp_max": 19.989999999999952,
+        "unit": "Celsius"
+    },
+    "sun": {
+        "sunrise": "2018-05-30T03:50:15.000+0000",
+        "sunset": "2018-05-30T20:06:44.000+0000"
+    },
+    "id": 0,
+    "name": "London",
+    "cod": 200,
+    "latestUpdate": "2018-05-30T15:20:00.000+0000"
+}
+
 ## Authors
 
 * **Navneen Kaur**
