@@ -8,5 +8,5 @@ import javax.validation.constraints.NotNull;
 
 public interface WeatherAppService {
 
-    CurrentWeatherResponse getCurrentWeather(@NotNull @Valid String city) throws JsonProcessingException;
+    CurrentWeatherResponse getCurrentWeather(@NotNull @Valid String city) throws Exception;
 }

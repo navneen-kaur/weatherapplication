@@ -5,13 +5,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.group.weather.org.domain.CurrentWeatherResponse;
 import com.group.weather.org.service.WeatherAppService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -24,11 +20,10 @@ public class WeatherApplicationController {
         this.weatherAppService = weatherAppService;
     }
 
-
-    @RequestMapping(value="/weather/{city}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public CurrentWeatherResponse getCurrentWeather(@PathVariable(value="city")String city) throws JsonProcessingException {
-        CurrentWeatherResponse currentWeather = weatherAppService.getCurrentWeather(city);
-        return currentWeather;
+    @GetMapping(value="/weather/{city}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public CurrentWeatherResponse getCurrentWeather(@PathVariable(value="city")String city) throws Exception {
+        return weatherAppService.getCurrentWeather(city);
     }
 
 }
