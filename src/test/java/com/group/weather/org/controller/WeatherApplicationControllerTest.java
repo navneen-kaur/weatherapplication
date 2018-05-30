@@ -4,6 +4,7 @@ package com.group.weather.org.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.group.weather.org.StubResponse.CurrentWeatherResponseStub;
 import com.group.weather.org.domain.CurrentWeatherResponse;
+import com.group.weather.org.domain.CurrentWeatherResponseUi;
 import com.group.weather.org.service.WeatherAppService;
 import org.junit.After;
 import org.junit.Assert;
@@ -34,7 +35,7 @@ public class WeatherApplicationControllerTest {
     @Test
      public void testServiceResponseNotNull() throws Exception{
         Mockito.when(this.weatherAppService.getCurrentWeather("London")).thenReturn(getStubWeatherResponse());
-        CurrentWeatherResponse response = weatherApplicationController.getCurrentWeather("London");
+        CurrentWeatherResponseUi response = weatherApplicationController.getCurrentWeather("London");
         Assert.assertNotNull(response);
     }
 
@@ -43,9 +44,9 @@ public class WeatherApplicationControllerTest {
         this.weatherApplicationController = null;
     }
 
-    public CurrentWeatherResponse getStubWeatherResponse(){
+    public CurrentWeatherResponseUi getStubWeatherResponse(){
 
-        return new CurrentWeatherResponse();
+        return new CurrentWeatherResponseUi();
     }
 
 }

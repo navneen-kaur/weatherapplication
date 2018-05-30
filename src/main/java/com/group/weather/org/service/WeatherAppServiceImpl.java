@@ -1,8 +1,11 @@
 package com.group.weather.org.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group.weather.org.domain.CurrentWeatherResponse;
 
+import com.group.weather.org.domain.CurrentWeatherResponseUi;
+import com.group.weather.org.domain.Sun;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -22,7 +25,7 @@ public class WeatherAppServiceImpl implements WeatherAppService {
 
     public static final String URL_OPEN_WEATHER_ORG = "http://api.openweathermap.org/data/2.5/weather?q=";
 
-    public CurrentWeatherResponse getCurrentWeather(@NotNull @Valid String city) throws Exception {
+    public CurrentWeatherResponseUi getCurrentWeather(@NotNull @Valid String city) throws Exception {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(new MediaType[]{MediaType.APPLICATION_JSON_UTF8}));
@@ -32,14 +35,25 @@ public class WeatherAppServiceImpl implements WeatherAppService {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CurrentWeatherResponse> response = restTemplate.exchange(URL_OPEN_WEATHER_ORG + city + "&APPID=" + apiKey, HttpMethod.GET, entity, CurrentWeatherResponse.class);
         //HttpStatus status = response.getStatusCode();
-        return response.getBody();
-        /*if (status == HttpStatus.OK) {
-            CurrentWeatherResponse currentWeatherResponse = response.getBody();
-            System.out.println(currentWeatherResponse);
-            return currentWeatherResponse;
-        }
-       }
+        CurrentWeatherResponse updatedResponse = response.getBody();
 
-        return new CurrentWeatherResponse();*/
+        java.util.Date weatherDateTime= new java.util.Date(updatedResponse.getDt()*1000L);
+        java.util.Date weatherSunriseDateTime= new java.util.Date(updatedResponse.getSys().getSunrise()*1000L);
+        java.util.Date weatherSunsetDateTime= new java.util.Date(updatedResponse.getSys().getSunset()*1000L);
+
+        CurrentWeatherResponseUi finalResponse = new CurrentWeatherResponseUi();
+        finalResponse.setDate(weatherDateTime);
+        finalResponse.setCod(updatedResponse.getCod());
+        finalResponse.setName(updatedResponse.getName());
+        finalResponse.setId(updatedResponse.getId());
+        finalResponse.setMain(updatedResponse.getMain());
+        finalResponse.setWeather(updatedResponse.getWeather());
+        Sun sun = new Sun();
+        sun.setSunrise(weatherSunriseDateTime);
+        sun.setSunset(weatherSunsetDateTime);
+        finalResponse.setSun(sun);
+
+          return finalResponse;
+
     }
 }
